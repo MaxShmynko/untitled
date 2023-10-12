@@ -1,0 +1,17 @@
+mixin promo()
+    +b('section').promo
+        +e.container
+            +e('p').text 26 октября в прокат выходит сказочный блокбастер «По щучьему велению».<br>Вместе с простым парнем Емелей и волшебной щукой, которая может исполнить три желания, зрители отправятся в увлекательное путешествие за тридевять земель. 
+            +e.wrap
+                +e('a').button(href='#') выиграть билет
+                +e('a').button(href='#') купить билет
+        +e.film
+            img(src=`/images/promo-film.png`)
+        +e.logo
+            img(src=`/images/promo-logo.png`)
+        +e.shuka
+            img(src=`/images/promo-shuka.png`)
+        +e.title
+            img(src=`/images/promo-title.png`)
+        +e.years 
+            img(src=`/images/promo-years.png`)
