@@ -103,6 +103,53 @@ import $ from 'jquery';
 		}
 	};
 
+	$(document).ready(function () {
+
+		const $popupEmail = $(".games__email");
+		const $popupAttempts = $(".games__attempts");
+		const $popupLink = $(".games__link");
+		const $popupInput = $(".games__input");
+		const $submitButton = $(".games__button");
+
+		$submitButton.click(function () {
+
+			const email = $popupEmail.val();
+
+			const attempts = $popupAttempts.text();
+
+			if (email.trim() === "") {
+				alert("Пожалуйста, введите ваш e-mail.");
+				return; // Прекращаем отправку данных, если поле не заполнено
+			}
+
+			if (!$popupInput.prop("checked")) {
+				alert("Для продолжения необходимо согласиться с правилами и обработкой персональных данных.");
+				return; // Прекращаем отправку данных, если чекбокс не установлен
+			}
+
+
+
+			$.ajax({
+				type: "POST", // Может быть GET, POST или другим методом, в зависимости от вашего сервера
+				url: "https://schuka.woman.ru/save_email", // Укажите нужную ссылку
+				data: {
+					email: email,
+					attempts: attempts
+				},
+				success: function (response) {
+					// Обработка успешного ответа от сервера
+					console.log("Ответ от сервера: " + response);
+					// Здесь вы можете обновить значение popup__link с полученным ответом
+					$popupLink.text(response);
+				},
+				error: function (xhr, status, error) {
+					// Обработка ошибки
+					console.log("Ошибка: " + error);
+				}
+			});
+		});
+	});
+
 	var cards = [
 		{	
 			name: "php",
