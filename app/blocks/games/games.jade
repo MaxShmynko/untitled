@@ -2,7 +2,16 @@ mixin games()
     +b('section').games
         +e.wrap
             +e.game
-        +e.modal-overlay
-            +e.modal
-                +e.winner Победа!
-                +e('button').restart 123
+            +e.modal-overlay
+                +e.modal
+                    +e.modal__wrap
+                        +e.text Победа!
+                        +e.text Вы поймали щуку за <span class="popup__attempts">1</span> шагов. Хотите еще и выиграть призы? Тогда оставляйте свой e-mail в волшебном поле, получайте уникальную ссылку и делитесь ею в соцсетях. Чем больше ваших друзей перейдут по ней - тем ближе вы станете к победе.
+                        +e('input').email
+                        +e.field
+                            +e('input')(type="checkbox").input
+                            +e.text-input Согласен/согласна с правилами конкурса и на обработку персональных данных
+                        +e.link
+                        +e.wrap__button
+                            +e('button').button отправить
+                            +e('button').restart Сыграем ещё?

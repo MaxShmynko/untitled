@@ -1,12 +1,14 @@
 extends /blocks/layout-default/layout-default
-//- include /blocks/games/games
-include /blocks/popup/popup
-include /blocks/links/links
+//- include /blocks/promo/promo
+//- include /blocks/info/info
+include /blocks/games/games
+//- include /blocks/video/video
 
 block head
 	- var pageTitle = 'Project Template';
 
 block content
-	//- +games()
-	+popup()
-	+links()
+	//- +promo()
+	//- +info()
+	+games()
+	//- +video()
