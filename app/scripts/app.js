@@ -101,6 +101,40 @@ import $ from 'jquery';
 			return frag;
 		}
 	};
+	$(document).ready(function () {
+		
+		let $popupEmail = $(".popup__email");
+		let $attempts = $(".popup__attempts");
+		let $submitButton = $(".popup__button");
+		let $popupLink = $(".popup__link");
+	
+		$submitButton.click(function () {
+
+			let email = $popupEmail.val();
+	
+			let steps = $attempts.text();
+
+			$.ajax({
+				type: "POST", // Может быть GET, POST или другим методом, в зависимости от ваших потребностей
+				url: "https://schuka.woman.ru/save_email", // Укажите адрес серверного скрипта
+				data: {
+					email: email,
+					steps: steps
+				},
+				success: function (response) {
+					// Обработка успешного ответа от сервера
+					console.log("Ответ от сервера: " + response);
+					// Вы можете выполнить здесь дополнительные действия в зависимости от ответа
+					$popupLink.text(response);
+				},
+				error: function (xhr, status, error) {
+					// Обработка ошибки
+					console.log("Ошибка: " + error);
+				}
+			});
+		});
+	});
+
 	var cards = [
 		{
 			name: "Кот Баюн",
