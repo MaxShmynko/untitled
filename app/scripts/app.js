@@ -102,29 +102,45 @@ import $ from 'jquery';
 		}
 	};
 	$(document).ready(function () {
-		
-		let $popupEmail = $(".popup__email");
-		let $attempts = $(".popup__attempts");
-		let $submitButton = $(".popup__button");
-		let $popupLink = $(".popup__link");
+		// Находим элементы формы и кнопку
+		const $popupEmail = $(".popup__email");
+		const $popupAttempts = $(".popup__attempts");
+		const $popupLink = $(".popup__link");
+		const $popupInput = $(".popup__input");
+		const $submitButton = $(".popup__button");
 	
+		// Назначаем обработчик события клика на кнопку отправки
 		$submitButton.click(function () {
-
-			let email = $popupEmail.val();
+			// Получаем значение из поля popup__email
+			const email = $popupEmail.val();
 	
-			let steps = $attempts.text();
-
+			// Получаем значение из элемента popup__attempts
+			const attempts = $popupAttempts.text();
+	
+			// Проверяем, заполнено ли поле popup__email и установлен ли чекбокс popup__input
+			if (email.trim() === "") {
+				alert("Пожалуйста, введите ваш e-mail.");
+				return; // Прекращаем отправку данных, если поле не заполнено
+			}
+	
+			if (!$popupInput.prop("checked")) {
+				alert("Для продолжения необходимо согласиться с правилами и обработкой персональных данных.");
+				return; // Прекращаем отправку данных, если чекбокс не установлен
+			}
+	
+			// Выполняйте здесь логику для отправки этих данных на сервер
+			// Замените следующий код на вашу реальную логику отправки данных.
 			$.ajax({
-				type: "POST", // Может быть GET, POST или другим методом, в зависимости от ваших потребностей
-				url: "https://schuka.woman.ru/save_email", // Укажите адрес серверного скрипта
+				type: "POST", // Может быть GET, POST или другим методом, в зависимости от вашего сервера
+				url: "https://schuka.woman.ru/save_email", // Укажите нужную ссылку
 				data: {
 					email: email,
-					steps: steps
+					attempts: attempts
 				},
 				success: function (response) {
 					// Обработка успешного ответа от сервера
 					console.log("Ответ от сервера: " + response);
-					// Вы можете выполнить здесь дополнительные действия в зависимости от ответа
+					// Здесь вы можете обновить значение popup__link с полученным ответом
 					$popupLink.text(response);
 				},
 				error: function (xhr, status, error) {
