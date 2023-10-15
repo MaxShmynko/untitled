@@ -104,51 +104,52 @@ import $ from 'jquery';
 	};
 
 	$(document).ready(function () {
-
-		const $popupEmail = $(".games__email");
-		const $popupAttempts = $(".games__attempts");
-		const $popupLink = $(".games__link");
-		const $popupInput = $(".games__input");
-		const $submitButton = $(".games__button");
-
-		$submitButton.click(function () {
-
-			const email = $popupEmail.val();
-
-			const attempts = $popupAttempts.text();
-
+		$(".games__button").click(function () {
+			const email = $(".games__email").val();
+			const attempts = $(".games__attempts").text();
+			const $form = $(".games__modal__wrap");
+			const $newBlock = $(".games__links__wrap");
+	
 			if (email.trim() === "") {
-				alert("Пожалуйста, введите ваш e-mail.");
-				return; // Прекращаем отправку данных, если поле не заполнено
+				alert("Пожалуйста, введите ваш email.");
+				return;
 			}
-
-			if (!$popupInput.prop("checked")) {
+	
+			if (!$(".games__input").prop("checked")) {
 				alert("Для продолжения необходимо согласиться с правилами и обработкой персональных данных.");
-				return; // Прекращаем отправку данных, если чекбокс не установлен
+				return;
 			}
-
-
-
+	
 			$.ajax({
-				type: "POST", // Может быть GET, POST или другим методом, в зависимости от вашего сервера
-				url: "https://schuka.woman.ru/save_email", // Укажите нужную ссылку
+				type: "POST",
+				url: "https://schuka.woman.ru/save_email",
 				data: {
 					email: email,
 					attempts: attempts
 				},
 				success: function (response) {
-					// Обработка успешного ответа от сервера
-					console.log("Ответ от сервера: " + response);
-					// Здесь вы можете обновить значение popup__link с полученным ответом
-					$popupLink.text(response);
+					response = JSON.parse(response, (key, value) => {
+						if (typeof value === "string") {
+							return decodeURI(value);
+						}
+						return value;
+					});
+
+					console.log("Ответ от сервера: " + JSON.stringify(response));
+					$(".games__link-vk").html('<a class="games__link" href="' + response.vk + '">Vk</a>');
+					$(".games__link-ok").html('<a class="games__link" href="' + response.ok + '">Ok</a>');
+					$(".games__link-tg").html('<a class="games__link" href="' + response.tg + '">Tg</a>');
+					$(".games__link-your").html('<span class="games__link-text">Ваша ссылка:  </span><a class="games__link" href="' + response.link + '">' + response.link + '</a>');
+					$form.hide();
+					$newBlock.show();
 				},
 				error: function (xhr, status, error) {
-					// Обработка ошибки
 					console.log("Ошибка: " + error);
 				}
 			});
 		});
 	});
+	
 
 	var cards = [
 		{	

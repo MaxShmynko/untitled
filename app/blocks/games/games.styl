@@ -28,6 +28,13 @@
         height w(50)
         margin-top w(55)
         padding-left w(10)
+        +below(1000px)
+          width wm(270)
+          height wm(20)
+          margin-top wm(25)
+        +below(500px)
+          margin-top wm(35)
+          width wm(290)
 
     &__text
         color $c-vinous
@@ -36,6 +43,9 @@
         font-size w(20)
         font-weight 700
         line-height w(27)
+        +below(1000px)
+          font-size wm(10)
+          line-height wm(13)
 
     &__field
         display flex
@@ -43,11 +53,20 @@
         font-family $ff-Aeroport
         font-size w(15)
         margin-top w(25)
+        +below(1000px)
+          font-size wm(6)
+          margin-top wm(10)
+        +below(500px)
+            font-size wm(7)
+            margin-top wm(10)
 
     &__input
         width w(22)
         height w(22)
         margin-right w(10)
+        +below(1000px)
+          width wm(7)
+          height wm(7)
 
 
     &__button
@@ -62,8 +81,12 @@
         border-radius 10px
         color $c-zolato 
         border 3px solid $c-zolato
+        +below(1000px)
+          width wm(95)
+          height wm(30)
+          font-size wm(20)
 
-    &__modal__wrap
+    &__modal__wrap, &__links__wrap
         display flex
         flex-direction column
         align-items center
@@ -71,6 +94,67 @@
         border 10px solid $c-vinous
         background $c-yellowish
         height 100vh
+        +below(1000px)
+          border 3px solid $c-vinous
+          padding 35% 5% 20% 5%
+
+    &__links__wrap
+      padding 13% 10% 10% 10%
+      +below(1000px)
+        padding 10% 1% 10% 1%
+      +below(500px)
+        padding 20% 1% 10% 1%
+
+    &__link-text
+      font-family $ff-Dobrozrachniy
+      font-size w(50)
+      text-decoration none
+      color $c-vinous
+      +below(1000px)
+        display block
+        text-align center
+        font-size wm(25)
+
+    &__link
+        text-decoration none
+        font-family $ff-Aeroport
+        font-size w(35)
+        color $c-vinous
+        +below(1000px)
+          display block
+          padding-top wm(15)
+          font-size wm(8)
+
+    
+    &__link-wrap
+        display flex
+
+    &__link-vk, &__link-ok, &__link-tg
+      margin-top w(50)
+      background $c-vinous
+      border-radius 50%
+      width w(55)
+      height w(55)
+      display flex
+      align-items center
+      justify-content center
+      a
+        text-decoration none
+        font-family $ff-Aeroport
+        font-size w(25)
+        color $c-zolato
+        +below(1000px)
+          padding-top 0
+          font-size wm(12)
+      +below(1000px)
+        margin-top wm(50)
+        width wm(30)
+        height wm(30)
+
+    &__link-ok
+      margin w(50) w(15) w(70) w(15)
+      +below(1000px)
+        margin wm(50) wm(10) wm(70) wm(10)
 
 
     &__restart
@@ -86,11 +170,19 @@
         border-radius 10px
         color $c-zolato 
         border 3px solid $c-zolato
+        +below(1000px)
+          width wm(120)
+          height wm(30)
+          font-size wm(20)
 
     &__wrap__button
         display flex
         flex-direction row
         justify-content flex-start
+        +below(1000px)
+          margin-top wm(15)
+        +below(500px)
+          margin-top wm(40)
 
 .game {
   transform-style: preserve-3d;
