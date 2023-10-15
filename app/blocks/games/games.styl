@@ -86,6 +86,30 @@
           height wm(30)
           font-size wm(20)
 
+    &__button__start
+        position absolute
+        top 50%
+        margin-left auto
+        margin-right auto
+        left 0
+        right 0
+        text-align center
+        font-family $ff-Dobrozrachniy
+        font-size w(40)
+        background $c-vinous
+        width w(195)
+        height w(73)
+        padding-bottom w(10)
+        margin-top w(15)
+        border-radius 10px
+        color $c-zolato 
+        border 3px solid $c-zolato
+        z-index 1000
+        +below(1000px)
+          width wm(95)
+          height wm(30)
+          font-size wm(20)
+
     &__modal__wrap, &__links__wrap
         display flex
         flex-direction column
@@ -286,4 +310,15 @@
 .modal .message{
     text-align center
 }
-  
+
+.color{
+    opacity 0.5
+}
+
+.hidden {
+  display: none;  
+}
+
+.visible {
+  display: block;
+}

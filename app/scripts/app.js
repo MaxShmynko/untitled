@@ -1,6 +1,12 @@
 import $ from 'jquery';
 let counter = 0;
-(function(){
+$(".games__button__start").removeClass('hidden');
+$(".games__button__start").addClass('visible');
+
+
+  document.querySelector(".games__button__start").onclick = function(){
+	$(".games__button__start").removeClass('visible');
+	$(".games__button__start").addClass('hidden');
 	var Memory = {
 		
 		init: function(cards){
@@ -12,6 +18,15 @@ let counter = 0;
 			this.cardsArray = $.merge(cards, cards);
 			this.shuffleCards(this.cardsArray);
 			this.setup();
+			$( ".back:eq(1)" ).addClass('color');
+			$( ".back:eq(3)" ).addClass('color');
+			$( ".back:eq(4)" ).addClass('color');
+			$( ".back:eq(6)" ).addClass('color');
+			$( ".back:eq(9)" ).addClass('color');
+			$( ".back:eq(11)" ).addClass('color');
+			$( ".back:eq(12)" ).addClass('color');
+			$( ".back:eq(14)" ).addClass('color');
+			$( ".back:eq(16)" ).addClass('color');
 		},
 		shuffleCards: function(cardsArray){
 			this.$cards = $(this.shuffle(this.cardsArray));
@@ -224,4 +239,4 @@ let counter = 0;
 	];
 	
 	Memory.init(cards);
-})();
+};
