@@ -102,6 +102,15 @@ $(".games__button__start").addClass('visible');
 			this.shuffleCards(this.cardsArray);
 			this.setup();
 			this.$game.show("slow");
+			$( ".back:eq(1)" ).addClass('color');
+			$( ".back:eq(3)" ).addClass('color');
+			$( ".back:eq(4)" ).addClass('color');
+			$( ".back:eq(6)" ).addClass('color');
+			$( ".back:eq(9)" ).addClass('color');
+			$( ".back:eq(11)" ).addClass('color');
+			$( ".back:eq(12)" ).addClass('color');
+			$( ".back:eq(14)" ).addClass('color');
+			$( ".back:eq(16)" ).addClass('color');
 		},
 		shuffle: function(array){
 			var counter = array.length, temp, index;
