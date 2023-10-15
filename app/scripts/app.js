@@ -1,4 +1,5 @@
 import $ from 'jquery';
+let counter = 0;
 (function(){
 	var Memory = {
 		
@@ -7,6 +8,7 @@ import $ from 'jquery';
 			this.$modal = $(".games__modal");
 			this.$overlay = $(".games__modal-overlay");
 			this.$restartButton = $(".games__restart");
+			this.$questionCounter = $(".popup__attempts");
 			this.cardsArray = $.merge(cards, cards);
 			this.shuffleCards(this.cardsArray);
 			this.setup();
@@ -16,12 +18,19 @@ import $ from 'jquery';
 		},
 
 		setup: function(){
-			this.html = this.buildHTML();
+			if($(window).width() >= 1000){
+				this.html = this.buildHTML();
+			} else {
+				this.html = this.buildHTMLMobile();
+			}
+			counter = 0;
 			this.$game.html(this.html);
 			this.$memoryCards = $(".card");
 			this.paused = false;
      		this.guess = null;
 			this.binding();
+			setTimeout(function() { $(".inside").addClass('picked'); }, 0);
+			setTimeout(function() { $(".inside").removeClass('picked'); }, 4000);
 		},
 		binding: function(){
 			this.$memoryCards.on("click", this.cardClicked);
@@ -36,12 +45,13 @@ import $ from 'jquery';
 				if(!_.guess){
 					_.guess = $(this).attr("data-id");
 				} else if(_.guess == $(this).attr("data-id") && !$(this).hasClass("picked")){
-					
 					$(".picked").addClass("matched");
 					_.guess = null;
+					counter += 1;
 						} else {
 							_.guess = null;
 							_.paused = true;
+							counter += 1;
 							setTimeout(function(){
 								$(".picked").removeClass("picked");
 								Memory.paused = false;
@@ -55,6 +65,7 @@ import $ from 'jquery';
 
 		win: function(){
 			this.paused = true;
+			this.$questionCounter.text(counter);
 			setTimeout(function(){
 				Memory.showModal();
 				Memory.$game.fadeOut();
@@ -88,14 +99,27 @@ import $ from 'jquery';
 		    	}
 		    return array;
 		},
-
+		
 		buildHTML: function(){
 			var frag = '';
 			this.$cards.each(function(k, v){
 				frag += '<div class="card" data-id="'+ v.id +'"><div class="inside">\
 				<div class="front"><img src="'+ v.img +'"\
-				alt="'+ v.name +'" /><p>123</p>\</div>\
+				alt="'+ v.name +'" /></div>\
 				<div class="back"><img src="/images/card-bg.png"\
+				alt="" /></div></div>\
+				</div>';
+			});
+			return frag;
+		},
+
+		buildHTMLMobile: function(){
+			var frag = '';
+			this.$cards.each(function(k, v){
+				frag += '<div class="card" data-id="'+ v.id +'"><div class="inside">\
+				<div class="front"><img src="'+ v.imgMob +'"\
+				alt="'+ v.name +'" /></div>\
+				<div class="back"><img src="/images/card-bg-mob.png"\
 				alt="" /></div></div>\
 				</div>';
 			});
@@ -153,45 +177,54 @@ import $ from 'jquery';
 
 	var cards = [
 		{	
-			name: "php",
+			name: "Кот Баюн",
 			img: "/images/card-front-1.png",
+			imgMob: "/images/card-front-1-mob.png",
 			id: 1,
 		},
 		{
-			name: "css3",
+			name: "Емеля",
 			img: "/images/card-front-2.png",
+			imgMob: "/images/card-front-2-mob.png",
 			id: 2
 		},
 		{
-			name: "html5",
+			name: "Щука Василиса",
 			img: "/images/card-front-3.png",
+			imgMob: "/images/card-front-3-mob.png",
 			id: 3
 		},
 		{
-			name: "jquery",
+			name: "Кощей",
 			img: "/images/card-front-4.png",
+			imgMob: "/images/card-front-4-mob.png",
 			id: 4
 		}, 
 		{
-			name: "javascript",
+			name: "Царевна Анфиса",
 			img: "/images/card-front-5.png",
+			imgMob: "/images/card-front-5-mob.png",
 			id: 5
 		},
 		{
-			name: "node",
+			name: "Лорд Ротман",
 			img: "/images/card-front-6.png",
+			imgMob: "/images/card-front-6-mob.png",
 			id: 6
 		},
 		{
-			name: "photoshop",
+			name: "Царь Феофан",
 			img: "/images/card-front-7.png",
+			imgMob: "/images/card-front-7-mob.png",
 			id: 7
 		},
 		{
-			name: "python",
+			name: "Обжирало и Облипало",
 			img: "/images/card-front-8.png",
+			imgMob: "/images/card-front-8-mob.png",
 			id: 8
 		},
 	];
+	
 	Memory.init(cards);
 })();
