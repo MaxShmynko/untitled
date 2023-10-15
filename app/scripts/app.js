@@ -167,9 +167,6 @@ let counter = 0;
 					$form.hide();
 					$newBlock.show();
 				},
-				error: function (xhr, status, error) {
-					console.log("Ошибка: " + error);
-				}
 			});
 		});
 	});
