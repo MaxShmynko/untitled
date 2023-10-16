@@ -184,9 +184,9 @@ $(".games__button__start").addClass('visible');
 					});
 
 					console.log("Ответ от сервера: " + JSON.stringify(response));
-					$(".games__link-vk").html('<a class="games__link" href="' + response.vk + '">Vk</a>');
-					$(".games__link-ok").html('<a class="games__link" href="' + response.ok + '">Ok</a>');
-					$(".games__link-tg").html('<a class="games__link" href="' + response.tg + '">Tg</a>');
+					$(".games__link-vk").html('<a class="games__link" href="' + response.vk + '"target="_blank">Vk</a>');
+					$(".games__link-ok").html('<a class="games__link" href="' + response.ok + '"target="_blank">Ok</a>');
+					$(".games__link-tg").html('<a class="games__link" href="' + response.tg + '"target="_blank">Tg</a>');
 					$(".games__link-your").html('<span class="games__link-text">Ваша ссылка:  </span><a class="games__link" href="' + response.link + '">' + response.link + '</a>');
 					$form.hide();
 					$newBlock.show();
