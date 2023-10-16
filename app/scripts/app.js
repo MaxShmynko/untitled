@@ -154,7 +154,7 @@ $(".games__button__start").addClass('visible');
 	$(document).ready(function () {
 		$(".games__button").click(function () {
 			const email = $(".games__email").val();
-			const attempts = $(".popup__attempts").text();
+			const steps = $(".popup__attempts").text();
 			const $form = $(".games__modal__wrap");
 			const $newBlock = $(".games__links__wrap");
 	
@@ -173,8 +173,10 @@ $(".games__button__start").addClass('visible');
 				url: "https://schuka.woman.ru/save_email",
 				data: {
 					email: email,
-					attempts: attempts
+					steps: steps
 				},
+
+				
 				success: function (response) {
 					response = JSON.parse(response, (key, value) => {
 						if (typeof value === "string") {
