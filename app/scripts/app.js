@@ -154,7 +154,7 @@ $(".games__button__start").addClass('visible');
 	$(document).ready(function () {
 		$(".games__button").click(function () {
 			const email = $(".games__email").val();
-			const attempts = $(".games__attempts").text();
+			const attempts = $(".popup__attempts").text();
 			const $form = $(".games__modal__wrap");
 			const $newBlock = $(".games__links__wrap");
 	
