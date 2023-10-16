@@ -183,7 +183,6 @@ $(".games__button__start").addClass('visible');
 						return value;
 					});
 
-					console.log("Ответ от сервера: " + JSON.stringify(response));
 					$(".games__link-vk").html('<a class="games__link" href="' + response.vk + '"target="_blank">Vk</a>');
 					$(".games__link-ok").html('<a class="games__link" href="' + response.ok + '"target="_blank">Ok</a>');
 					$(".games__link-tg").html('<a class="games__link" href="' + response.tg + '"target="_blank">Tg</a>');
